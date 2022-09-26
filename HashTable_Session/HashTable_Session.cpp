@@ -18,14 +18,14 @@ public:
     void deletItem(int key);
     int hashFunction(int x) const;
     void displayHash();
-    std::vector<SingleLinkedList<int>> mylist;
+    std::vector<SingleLinkedList<int>> bucketlist;
 };
 
 HashTable::HashTable():bucket(0)
 {
 }
 
-HashTable::HashTable(int value) :bucket(1) , mylist(value)
+HashTable::HashTable(int value) :bucket(1) , bucketlist(value)
 {
     this->bucket = value;
     std::vector<int> table(bucket);
@@ -37,7 +37,7 @@ void HashTable::insertItem(int key)
 {
     int index = hashFunction(key);
     std::cout << " index : " << index << "Key : " << key << std::endl;
-    mylist[index].add(key);
+    bucketlist[index].add(key);
    
  
 }
@@ -63,22 +63,22 @@ void HashTable::displayHash()
     std::cout << std::endl;
     for (int i = 0; i < bucket; i++) {
         std::cout << "i : "  << i <<  std::endl;
-        mylist[i].printData();
+        bucketlist[i].printData();
     }
 }
 
 
 int main()
 {
-    int a[] = { 15, 11, 27, 8, 12, 20 , 30, 22, 25, 102, 155, 25, 14 }; // want to add these elements to hash tabele // if there are strings or other types
+    int keys[] = { 15, 11, 27, 8, 12, 20 , 30, 22, 25, 102, 155, 25, 14 }; // want to add these elements to hash tabele // if there are strings or other types
     //then hash function needs to chnage and be more dynamic // 
 
-    int n = sizeof(a) / sizeof(a[0]);
+    int n = sizeof(keys) / sizeof(keys[0]);
 
     HashTable h(7);   // 7 is count of buckets in // i want to have a bucket of this size, this can change if you have larger dataset 
 
     for (int i = 0; i < n; i++)
-        h.insertItem(a[i]);
+        h.insertItem(keys[i]);
 
     // display the Hash table
     h.displayHash();
