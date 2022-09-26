@@ -29,7 +29,6 @@ HashTable::HashTable(int value) :bucket(1) , bucketlist(value)
 {
     this->bucket = value;
     std::vector<int> table(bucket);
-   // std::vector<SingleLinkedList<int>> mylist(value);
 
 }
 
